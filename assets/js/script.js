@@ -16,9 +16,11 @@ const question1 = {
 };
 
 const question2 = {
-    title: "True or false: this question format is an example of a Boolean.",
-    option1: "False",
-    correct: "True",
+    title: "How many distinct values are available to the Boolean data type?",
+    option1: "1",
+    option2: "Depends on the context",
+    option3: "0",
+    correct: "2",
 };
 
 const question3 = {
@@ -38,9 +40,11 @@ const question4 = {
 };
 
 const question5 = {
-    title: "True or false: Java and JavaScript are the same language so the terms can be used interchangeably.",
-    option1: "True",
-    correct: "False",
+    title: "With what do you separate methods in an object?",
+    option1: "A period (.)",
+    option2: "A pair of brackets ([])",
+    option3: "A dollar sign ($)",
+    correct: "A comma (,)",
 };
 
 const question6 = {
@@ -85,6 +89,7 @@ const question10 = {
 
 
 // Arrays
+const questionArray = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
 
 
 
@@ -100,7 +105,10 @@ function countdown() {
   };
   
   function quiz() {
-  
+      do {
+
+      }
+      while (i < 10 && timerValue > 0);
   }
   
 
