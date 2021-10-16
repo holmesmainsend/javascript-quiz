@@ -5,7 +5,7 @@ const retireEl = document.querySelector(".retire");
 const mainEl = document.querySelector("main");
 const titlerEl = document.querySelector(".titler");
 var timerDisplayEl = document.querySelector(".timerDisplay");
-var timerValue = 5;
+// var timerValue = 5;
 
 
 // Arrays
@@ -107,13 +107,20 @@ const questionArray = [
 
 // Functions
 function countdown() {
-    if (timerValue > 0) {
-      setInterval(function () {
-        timerValue--;
-        timerDisplayEl.innerHTML = timerValue;
-      }, 1000);
-    } else console.log("Game Over");
-  }
+    var timerValue = 5
+      var setTimer = setInterval (function() {
+      if (timerValue > 0) {
+      timerValue--;
+      timerDisplayEl.innerHTML = timerValue;
+      }
+
+    else {
+    timerDisplayEl.textContent = "";
+    clearInterval(setTimer);
+    console.log("Game Over");
+    }
+      },1000)
+    }
   
   function beginRemover() {
     beginEl.remove();
