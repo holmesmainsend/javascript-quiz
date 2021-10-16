@@ -4,7 +4,7 @@
 
 // DOM values
 const beginEl = document.querySelector(".begin");
-const leaderboardEl = document.querySelector(".leaderboard");
+// const leaderboardEl = document.querySelector(".leaderboard");
 const retireEl = document.querySelector(".retire");
 const mainEl = document.querySelector("main");
 const titlerEl = document.querySelector(".titler");
@@ -174,12 +174,12 @@ function quizRemover() {
   console.log(score);
   titlerEl.innerText = "Game Over";
   formEl.innerHTML = 
-  "<h3>Add Local Leaderboard Name Below</h3> <input class='name'> <input type='submit' value='Submit' class='submitButton'>"
+  "<h3>Add Local Leaderboard Name Below</h3> <input name = 'name' class='name'> <input type='submit' value='Submit' class='submitButton'>"
   var submitButtonEl = document.querySelector(".submitButton");
   var nameEl = document.querySelector(".name");
 
   submitButtonEl.addEventListener("click", function() {
-    localStorage.setItem("Player name: ", score);
+    localStorage.setItem(nameEl.value, score);
   })
 }
 
@@ -221,10 +221,6 @@ function timesUp() {
 // Event listeners
 beginEl.addEventListener("click", startQuiz, {});
 beginEl.addEventListener("click", countdown, {});
-
-leaderboardEl.addEventListener("click", function () {
-  console.log("leaderboard");
-});
 
 retireEl.addEventListener("click", function () {
   close();
