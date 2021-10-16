@@ -1,17 +1,17 @@
-// TODO: save timer score to localStorage with user initials input (do not accept empty string)
-// TODO: retrieve scores from localStorage for leaderboard page
 // TODO: add polish/CSS/sound effects
+
 
 // DOM values
 const beginEl = document.querySelector(".begin");
-// const leaderboardEl = document.querySelector(".leaderboard");
+const leaderboardEl = document.querySelector(".leaderboard");
 const retireEl = document.querySelector(".retire");
 const mainEl = document.querySelector("main");
 const titlerEl = document.querySelector(".titler");
 var timerDisplayEl = document.querySelector(".timerDisplay");
 var formEl = document.querySelector(".form");
 var currentQuestion = 0;
-var timerValue = 300;
+var timerValue = 60;
+
 
 // Arrays
 const questionArray = [
@@ -109,6 +109,7 @@ const questionArray = [
   },
 ];
 
+
 // Functions
 function countdown() {
   var setTimer = setInterval(function () {
@@ -130,22 +131,22 @@ function beginRemover() {
 function startQuiz() {
   beginRemover();
   if (currentQuestion < 10) {
-  var currentPrompt = questionArray[currentQuestion];
-  const gameQuestionsEl = document.createElement("div");
-  gameQuestionsEl.setAttribute("id", "gameQuestionDiv");
-  mainEl.appendChild(gameQuestionsEl);
-  currentPrompt.options.forEach(function (choice, i) {
-    titlerEl.innerText = questionArray[currentQuestion].title;
-    var optionButton = document.createElement("button");
-    optionButton.innerText = choice;
-    gameQuestionsEl.appendChild(optionButton);
-    optionButton.addEventListener("click", function () {
-      verifyChoice(optionButton);
+    var currentPrompt = questionArray[currentQuestion];
+    const gameQuestionsEl = document.createElement("div");
+    gameQuestionsEl.setAttribute("id", "gameQuestionDiv");
+    mainEl.appendChild(gameQuestionsEl);
+    currentPrompt.options.forEach(function (choice, i) {
+      titlerEl.innerText = questionArray[currentQuestion].title;
+      var optionButton = document.createElement("button");
+      optionButton.innerText = choice;
+      gameQuestionsEl.appendChild(optionButton);
+      optionButton.addEventListener("click", function () {
+        verifyChoice(optionButton);
+      });
     });
-  });
-} else {
-  quizRemover();
-}
+  } else {
+    quizRemover();
+  }
 }
 
 function verifyChoice(optionButton) {
@@ -166,61 +167,50 @@ function quizRemover() {
   const gameQuestionsEl = document.createElement("div");
   gameQuestionsEl.setAttribute("id", "gameQuestionDiv");
   mainEl.appendChild(gameQuestionsEl);
-  var score = timerValue
+  var score = timerValue;
   timerDisplayEl.remove();
   var scoreDisplay = document.createElement("p");
   scoreDisplay.innerText = score;
   mainEl.appendChild(scoreDisplay);
-  console.log(score);
   titlerEl.innerText = "Game Over";
-  formEl.innerHTML = 
-  "<h3>Add Local Leaderboard Name Below</h3> <input name = 'name' class='name'> <input type='submit' value='Submit' class='submitButton'>"
+  formEl.innerHTML =
+    "<h3>Add Local Leaderboard Name Below</h3> <input name = 'name' class='name'> <input type='submit' value='Submit' class='submitButton'>";
   var submitButtonEl = document.querySelector(".submitButton");
   var nameEl = document.querySelector(".name");
 
-  submitButtonEl.addEventListener("click", function() {
+  submitButtonEl.addEventListener("click", function () {
     localStorage.setItem(nameEl.value, score);
-  })
+  });
 }
 
 function timesUp() {
   let gameQuestionsEl = document.querySelector("#gameQuestionDiv");
   gameQuestionsEl.remove();
   titlerEl.innerText = "Game Over";
-  formEl.innerHTML = 
-  "<h3>Since you ran out of time your score for this round is 0. Refresh the page and try again for a chance to get your name on the leaderboard.</h3>"
+  formEl.innerHTML =
+    "<h3>Since you ran out of time your score for this round is 0. Refresh the page and try again for a chance to get your name on the leaderboard.</h3>";
 }
 
-// for (var i = 0; i < questionArray.length; i++) {
-//   titlerEl.innerText = questionArray[i].title;
-//   var option1Button = document.createElement("button");
-//   var option2Button = document.createElement("button");
-//   var option3Button = document.createElement("button");
-//   var option4Button = document.createElement("button");
-//   option1Button.textContent = questionArray[i].option1;
-//   option2Button.textContent = questionArray[i].option2;
-//   option3Button.textContent = questionArray[i].option3;
-//   option4Button.textContent = questionArray[i].option4;
-//   mainEl.appendChild(option1Button);
-//   mainEl.appendChild(option2Button);
-//   mainEl.appendChild(option3Button);
-//   mainEl.appendChild(option4Button);
+// code for localScoresGenerator function from following source: https://stackoverflow.com/questions/17745292/how-to-retrieve-all-localstorage-items-without-knowing-the-keys-in-advance
+function localScoresGenerator() {
+  var archive = [],
+    keys = Object.keys(localStorage),
+    i = 0,
+    key;
 
-//   option1Button.addEventListener("click", console.log("This is option1"));
-//   option2Button.addEventListener("click", console.log("This is option2"));
-//   option3Button.addEventListener("click", console.log("This is option3"));
-//   option4Button.addEventListener("click", console.log("This is option4"));
+  for (; (key = keys[i]); i++) {
+    archive.push(" " + key + " = " + localStorage.getItem(key));
+  }
+  alert(archive);
+  return archive;
+}
 
-//   // if (response == questionArray[i].answer) {
-//   //   alert("Correct");
-//   // } else {
-//   //   alert("WRONG");
-//   // }
-// }
 
 // Event listeners
 beginEl.addEventListener("click", startQuiz, {});
 beginEl.addEventListener("click", countdown, {});
+
+leaderboardEl.addEventListener("click", localScoresGenerator, {});
 
 retireEl.addEventListener("click", function () {
   close();
