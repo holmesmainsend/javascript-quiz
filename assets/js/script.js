@@ -1,6 +1,3 @@
-// TODO: add polish/CSS/sound effects
-
-
 // DOM values
 const beginEl = document.querySelector(".begin");
 const leaderboardEl = document.querySelector(".leaderboard");
