@@ -113,6 +113,7 @@ function countdown() {
     if (timerValue > 0) {
       timerValue--;
       timerDisplayEl.innerHTML = timerValue;
+      console.log(timerValue);
     } else {
       timerDisplayEl.textContent = "";
       clearInterval(setTimer);
@@ -166,6 +167,7 @@ function quizRemover() {
   mainEl.appendChild(gameQuestionsEl);
   var score = timerValue;
   timerDisplayEl.remove();
+  timerValue = 100000000000;
   var scoreDisplay = document.createElement("p");
   scoreDisplay.innerText = score;
   mainEl.appendChild(scoreDisplay);
