@@ -9,7 +9,6 @@ var formEl = document.querySelector(".form");
 var currentQuestion = 0;
 var timerValue = 60;
 
-
 // Arrays
 const questionArray = [
   {
@@ -106,14 +105,12 @@ const questionArray = [
   },
 ];
 
-
 // Functions
 function countdown() {
   var setTimer = setInterval(function () {
     if (timerValue > 0) {
       timerValue--;
       timerDisplayEl.innerHTML = timerValue;
-      console.log(timerValue);
     } else {
       timerDisplayEl.textContent = "";
       clearInterval(setTimer);
@@ -203,7 +200,6 @@ function localScoresGenerator() {
   alert(archive);
   return archive;
 }
-
 
 // Event listeners
 beginEl.addEventListener("click", startQuiz, {});
