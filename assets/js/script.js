@@ -197,6 +197,7 @@ function localScoresGenerator() {
   for (; (key = keys[i]); i++) {
     archive.push(" " + key + " = " + localStorage.getItem(key));
   }
+  localStorage.removeItem('tasks');
   alert(archive);
   return archive;
 }
