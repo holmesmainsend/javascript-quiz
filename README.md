@@ -4,6 +4,9 @@
 ## Purpose
 A quiz to test your knowledge of JavaScript fundamentals, powered by... JavaScript fundamentals.
 
+## Note
+"Enter Retirement" button no longer works with GitHub version of website.
+
 ## Built With
 * HTML
 * CSS
